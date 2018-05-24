@@ -45,17 +45,23 @@ Your server will start at port 8010
 ###### 一个Google及Google Docs的镜像，方便科学上网，方便Android预览文档
 
 ###### 使用方法：
+```sh
 docker pull humilton/nginx-google-proxy
 git clone https://github.com/humilton/docker-nginx-google-proxy.git
 cd docker-nginx-google-proxy
+```
 编辑nginx.conf，配置自己的域名
 
 ###### 启动服务：
+```sh
 docker-compose up -d
+```
 ###### 停止服务：
+```sh
 docker-compose down
+```
 
-服务端口为port 8010，可以修改docker-compose.yml进行改变
+服务端口为port 8010，可以修改``docker-compose.yml``进行改变
  
 ## Correlation
 
