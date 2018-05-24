@@ -3,6 +3,8 @@ services:
 
    gproxy:
      image: humilton/nginx-google-proxy:latest
+     volumes: 
+       - ./conf/:/etc/nginx/conf/
      ports:
        - "8010:80"
      restart: always

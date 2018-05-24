@@ -41,7 +41,9 @@ COPY --from=base /usr/local/sbin/nginx /usr/local/sbin/nginx
 COPY --from=base /etc/nginx /etc/nginx
 COPY --from=base /var/log/nginx /var/log/nginx
 #ADD https://raw.githubusercontent.com/Humilton/docker-nginx-google-proxy/master/nginx.conf /etc/nginx/nginx.conf
-ADD https://read.yaoping.win/nginx.conf /etc/nginx/nginx.conf
+#ADD https://read.yaoping.win/nginx.conf /etc/nginx/nginx.conf
+RUN rm /etc/nginx/nginx.conf
+RUN ln -s /etc/nginx/conf/nginx.conf /etc/nginx/nginx.conf
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 WORKDIR /etc/nginx
 EXPOSE 80

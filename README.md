@@ -12,17 +12,28 @@ You can pull the image from `hub.docker.com`.
 $ docker pull humilton/nginx-google-proxy
 ```
 
-The image is only 7.72 MB. You can build with source repository by yourself.
+The image is only 7.75 MB. You can build with source repository by yourself.
 
 ```sh
 $ git clone https://github.com/humilton/docker-nginx-google-proxy.git
 $ cd docker-nginx-google-proxy
-$ docker build -t humilton/nginx-google-proxy .  # edit with your domain for proxy docs.google.com in nginx.conf before do this
+$ docker build -t humilton/nginx-google-proxy .
 ```
 
 ## Usage
 
-First, run a container with `humilton/nginx-google-proxy` image.
+First, use your own domain in nginx.conf
+```
+# vi nginx.conf
+```
+use command `:s/web.yaoping.win/<your domain replace google.com>/g`
+
+use command `:s/w.yaoping.win/<your domain replace docs.google.com>/g`
+
+use command `:s/api.yaoping.win/<your domain replace apis.google.com>/g`
+
+
+Second, run a container with `humilton/nginx-google-proxy` image.
 
 ```sh
 $ docker-compose up   # run `docker-compose up -d` for run as daemon
