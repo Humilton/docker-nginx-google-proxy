@@ -1,0 +1,8 @@
+version: "3"
+services:
+
+   gproxy:
+     image: humilton/nginx-google-proxy:latest
+     ports:
+       - "8010:80"
+     restart: always

@@ -1,67 +1,35 @@
 # docker-nginx-google-proxy
 
-Build a very tiny nginx image with google-proxy.
+Build a very tiny nginx image with google-proxy, proxy docs.google.com.
 
-Demo site: [https://gg.bingozb.com](https://gg.bingozb.com/) (The service will be suspended at any time.)
+Demo site: [https://web.yaoping.win](https://web.yaoping.win) (The service will be suspended at any time.)
 
 ## Build
 
 You can pull the image from `hub.docker.com`.
 
 ```sh
-$ docker pull bingozb/nginx-google-proxy
+$ docker pull humilton/nginx-google-proxy
 ```
 
-The image is only 7.72 MB. If you're in China, you can try to pull it from aliyuncs, which will be faster.
+The image is only 7.72 MB. You can build with source repository by yourself.
 
 ```sh
-$ docker pull registry.cn-shenzhen.aliyuncs.com/bingozb/nginx-google-proxy
-```
-
-Or, you can build with source repository by yourself.
-
-```sh
-$ git clone https://github.com/bingozb/docker-nginx-google-proxy.git
+$ git clone https://github.com/humilton/docker-nginx-google-proxy.git
 $ cd docker-nginx-google-proxy
-$ docker build -t bingozb/nginx-google-proxy .
+$ docker build -t humilton/nginx-google-proxy .  # edit with your domain for proxy docs.google.com in nginx.conf before do this
 ```
 
 ## Usage
 
-First, run a container with `bingozb/nginx-google-proxy` image.
+First, run a container with `humilton/nginx-google-proxy` image.
 
 ```sh
-$ sudo docker run --restart always -d --name nginx-google-proxy bingozb/nginx-google-proxy
+$ docker-compose up   # run `docker-compose up -d` for run as daemon
+$ docker-compose down  # shutdown
 ```
-
-Then, run your nginx container and link with `nginx-google-proxy`. eg. :
-
-```sh
-$ sudo docker run --restart always -d --name nginx \
--p 80:80 -p 443:443 \
---link nginx-google-proxy:google-proxy \
--v path/to/nginx.conf:/etc/nginx/conf.d/default.conf \
-nginx
-```
-
-And your `path/to/nginx.conf` should be like this:
-
-```sh
-server {
-    listen 80;
-    server_name gg.bingozb.com;
-    location ~ {
-        proxy_pass http://google-proxy;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-Ssl off;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Port 80;
-    }
-}
-```
-
-As you see, `google-proxy` is an alias for your nginx container and `nginx-google-proxy` link in the previous step.
-
+Your server will start at port 8010
+ 
 ## Correlation
 
 - Dockerfile https://github.com/bingozb/docker-nginx-google-proxy/tree/master/Dockerfile
