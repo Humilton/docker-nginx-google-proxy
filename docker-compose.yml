@@ -2,7 +2,7 @@ version: "3"
 services:
 
    gproxy:
-     image: humilton/nginx-google-proxy:latest
+     image: humilton/nginx-google-proxy
      volumes: 
        - ./conf/:/etc/nginx/conf/
      ports:
