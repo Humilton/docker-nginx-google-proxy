@@ -1,6 +1,6 @@
 FROM alpine as base
 RUN apk update && apk upgrade && apk add gcc g++ make wget git file openssl-dev pcre-dev zlib-dev
-RUN git clone https://github.com/cuber/ngx_http_google_filter_module
+RUN git clone https://github.com/cuber/ngx_http_google_filter_module && cd ngx_http_google_filter_module && git reset --hard 77532b951453c9c && cd ..
 RUN git clone https://github.com/yaoweibin/ngx_http_substitutions_filter_module
 RUN NGINX_VERSION=nginx-1.13.12 && wget http://nginx.org/download/${NGINX_VERSION}.tar.gz && tar zxf ${NGINX_VERSION}.tar.gz && cd ${NGINX_VERSION} && ls -lha && \
 ./configure --with-http_v2_module --with-http_ssl_module --with-stream --with-stream_ssl_preread_module --sbin-path=/usr/local/sbin/nginx --prefix=/etc/nginx --conf-path=/etc/nginx/nginx.conf --http-log-path=/var/log/nginx/access.log --error-log-path=/var/log/nginx/error.log --pid-path=/var/run/nginx.pid \
