@@ -22,18 +22,8 @@ $ docker build -t humilton/nginx-google-proxy .
 
 ## Usage
 
-First, use your own domain in nginx.conf
-```
-# vi nginx.conf
-```
-use command `:s/web.yaoping.win/<your domain replace google.com>/g`
-
-use command `:s/w.yaoping.win/<your domain replace docs.google.com>/g`
-
-use command `:s/api.yaoping.win/<your domain replace apis.google.com>/g`
-
-
-Second, run a container with `humilton/nginx-google-proxy` image.
+First, run a container with `humilton/nginx-google-proxy` image.
+Second, use another nginx config your own domain in nginx.conf
 
 ```sh
 $ docker-compose up   # run `docker-compose up -d` for run as daemon
